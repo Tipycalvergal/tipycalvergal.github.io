@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Personal academic website of Your Name: research, CV, presentations, publications, and more.">
+  <title>Your Name | Personal Website</title>
+  <style>
+    :root { --bg:#fbfaf8; --paper:#ffffff; --ink:#1d2936; --muted:#627083; --line:#e5e8ed; --accent:#27647b; --accent-strong:#174a60; --soft:#eaf4f5; --max:1060px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:95px; }
+    body { margin:0; font:16px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; color:var(--ink); background:var(--bg); }
+    a { color:var(--accent-strong); text-underline-offset:3px; }
+    a:hover { color:#0e7890; }
+    a:focus-visible, button:focus-visible { outline:3px solid #edb55c; outline-offset:4px; }
+    .container { max-width:var(--max); padding:0 28px; margin:0 auto; }
+    .skip { position:absolute; top:-60px; left:12px; padding:8px 12px; background:#fff; z-index:50; }
+    .skip:focus { top:12px; }
+    header { position:sticky; top:0; z-index:10; background:rgba(251,250,248,.96); border-bottom:1px solid var(--line); backdrop-filter:blur(8px); }
+    .navwrap { display:flex; align-items:center; justify-content:space-between; gap:24px; min-height:72px; }
+    .brand { color:var(--ink); font-family:Georgia,"Times New Roman",serif; font-size:1.24rem; font-weight:700; text-decoration:none; white-space:nowrap; }
+    nav { display:flex; flex-wrap:wrap; justify-content:flex-end; column-gap:21px; row-gap:6px; }
+    nav a { color:#435363; font-size:.91rem; text-decoration:none; font-weight:600; }
+    nav a:hover { color:var(--accent); }
+    .hero { padding:95px 0 88px; border-bottom:1px solid var(--line); background:linear-gradient(115deg,#f7faf9, #fbfaf8 62%); }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; font-size:.74rem; font-weight:800; color:var(--accent); margin:0 0 14px; }
+    h1,h2,h3 { font-family:Georgia,"Times New Roman",serif; letter-spacing:-.025em; line-height:1.25; }
+    h1 { font-size:clamp(2.7rem,6vw,4.65rem); margin:0 0 18px; }
+    h2 { font-size:2.25rem; margin:0 0 23px; }
+    h3 { font-size:1.3rem; margin:0 0 8px; }
+    .hero .lead { font-size:1.22rem; max-width:680px; color:#44586a; margin:0 0 26px; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; }
+    .button { border-radius:7px; display:inline-block; padding:10px 18px; border:1px solid var(--accent); background:var(--accent); color:#fff; font-weight:650; font-size:.91rem; text-decoration:none; }
+    .button:hover { background:var(--accent-strong); color:#fff; }
+    .button.secondary { background:transparent; color:var(--accent); }
+    .button.secondary:hover { background:var(--soft); }
+    section { padding:78px 0; border-bottom:1px solid var(--line); }
+    .section-intro { color:var(--muted); max-width:700px; margin:-8px 0 27px; }
+    .two-col { display:grid; grid-template-columns:minmax(0, 1.6fr) minmax(235px, 1fr); gap:48px; align-items:start; }
+    .meta { padding:23px 26px; border:1px solid var(--line); background:var(--paper); border-radius:12px; }
+    .meta p { margin:0 0 12px; overflow-wrap:anywhere; }
+    .meta p:last-child { margin-bottom:0; }
+    .small-label { font-weight:750; color:var(--muted); font-size:.77rem; text-transform:uppercase; letter-spacing:.07em; }
+    .timeline { border-left:2px solid #cddce0; padding-left:26px; }
+    .entry { position:relative; margin-bottom:28px; }
+    .entry:last-child { margin-bottom:0; }
+    .entry:before { content:""; position:absolute; width:10px; height:10px; border-radius:50%; background:var(--accent); left:-32px; top:8px; border:2px solid var(--bg); }
+    .when { margin:0 0 3px; color:var(--accent); font-size:.86rem; font-weight:750; }
+    .entry p { margin:5px 0 0; color:var(--muted); }
+    .cv-grid { display:grid; grid-template-columns:1fr 1fr; gap:37px; }
+    .cv-grid h3 { border-bottom:1px solid var(--line); padding-bottom:9px; margin-bottom:20px; }
+    .cv-grid ul { padding-left:19px; margin-top:6px; }
+    .pub { background:var(--paper); border:1px solid var(--line); border-radius:11px; padding:22px 25px; margin-bottom:14px; }
+    .pub p { margin:7px 0 0; color:var(--muted); }
+    .tag { display:inline-block; background:var(--soft); color:var(--accent-strong); font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em; border-radius:5px; padding:3px 8px; margin-bottom:11px; }
+    .stack { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .card { background:var(--paper); border:1px solid var(--line); border-radius:11px; padding:25px; }
+    .card p { color:var(--muted); margin:0; }
+    footer { text-align:center; padding:31px 20px; font-size:.88rem; color:var(--muted); }
+    @media(max-width:760px) { .navwrap { align-items:flex-start; flex-direction:column; gap:8px; padding-top:14px; padding-bottom:14px; } nav { justify-content:flex-start; gap:8px 16px; } .hero { padding:66px 0; } section { padding:55px 0; } .two-col,.cv-grid,.stack { grid-template-columns:1fr; gap:22px; } .container { padding:0 20px; } h2 { font-size:1.95rem; } html { scroll-padding-top:155px; } }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <div class="container navwrap">
+      <a class="brand" href="#home">Your Name</a>
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#cv">CV</a>
+        <a href="#publications">Presentations &amp; Publications</a>
+        <a href="#misc">Miscellaneous</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. HOME: Edit your name, position, and brief description below. -->
+    <div class="hero" id="home">
+      <div class="container">
+        <p class="eyebrow">Personal academic website</p>
+        <h1>Hello, I'm Your Name.</h1>
+        <p class="lead">I'm a [student / researcher / professional] interested in [your field or topic]. Welcome to my website, where I share my work, research, and interests.</p>
+        <div class="actions">
+          <a class="button" href="#about">Learn about me</a>
+          <a class="button secondary" href="#publications">View my work</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. ABOUT: Replace the placeholder description and contact information. -->
+    <section id="about" aria-labelledby="about-title">
+      <div class="container">
+        <h2 id="about-title">About</h2>
+        <div class="two-col">
+          <div>
+            <p>I am currently a [your position] at [your university or organization]. My interests include [research interest 1], [research interest 2], and [research interest 3].</p>
+            <p>My work focuses on [a short explanation of your research or professional focus]. I enjoy collaborating, learning new methods, and sharing ideas with others.</p>
+            <p>Outside of work, I enjoy [a hobby or personal interest].</p>
+          </div>
+          <aside class="meta" aria-label="Contact details">
+            <p class="small-label">Contact</p>
+            <p><strong>Email</strong><br><a href="mailto:you@example.com">you@example.com</a></p>
+            <p><strong>Affiliation</strong><br>Your University / Organization</p>
+            <p><strong>Links</strong><br><a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://scholar.google.com/" target="_blank" rel="noopener noreferrer">Google Scholar</a></p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CV: Replace sample education and experience. -->
+    <section id="cv" aria-labelledby="cv-title">
+      <div class="container">
+        <h2 id="cv-title">Curriculum Vitae</h2>
+        <p class="section-intro">A brief overview of my education, experience, and skills. You can add a PDF download once you have uploaded a file named <code>cv.pdf</code> to this repository.</p>
+        <!-- To enable a PDF button, upload cv.pdf and remove the comment markers from the next line. -->
+        <!-- <p><a class="button" href="cv.pdf" download>Download full CV (PDF)</a></p> -->
+        <div class="cv-grid">
+          <div>
+            <h3>Education</h3>
+            <div class="timeline">
+              <div class="entry"><p class="when">2023 – Present</p><strong>[Degree] in [Subject]</strong><p>[University], [Location]</p></div>
+              <div class="entry"><p class="when">2019 – 2023</p><strong>[Previous degree] in [Subject]</strong><p>[University], [Location]</p></div>
+            </div>
+          </div>
+          <div>
+            <h3>Experience</h3>
+            <div class="timeline">
+              <div class="entry"><p class="when">2024 – Present</p><strong>[Research / Work Position]</strong><p>[Institution] · Brief description of responsibilities.</p></div>
+              <div class="entry"><p class="when">2022 – 2023</p><strong>[Previous Position]</strong><p>[Organization] · Brief description of your work.</p></div>
+            </div>
+          </div>
+          <div>
+            <h3>Skills</h3>
+            <ul><li>[Research method or technical skill]</li><li>[Software / programming language]</li><li>[Another relevant skill]</li></ul>
+          </div>
+          <div>
+            <h3>Awards &amp; Honors</h3>
+            <ul><li>[Award or scholarship], [year]</li><li>[Academic recognition], [year]</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. PRESENTATIONS AND PUBLICATIONS: Replace these with real citations. -->
+    <section id="publications" aria-labelledby="pub-title">
+      <div class="container">
+        <h2 id="pub-title">Presentations &amp; Publications</h2>
+        <p class="section-intro">Selected papers, conference talks, posters, and other scholarly work. The entries below are examples for you to edit or delete.</p>
+        <h3>Publications</h3>
+        <article class="pub">
+          <span class="tag">Journal article · Example</span>
+          <strong>[Your Name], [Coauthor]. (2026). [Title of your paper].</strong>
+          <p><em>[Journal Name]</em>, [volume], [pages]. <a href="https://doi.org/" target="_blank" rel="noopener noreferrer">DOI link (replace)</a></p>
+        </article>
+        <article class="pub">
+          <span class="tag">Working paper · Example</span>
+          <strong>[Your Name]. (2025). [Title of your working paper].</strong>
+          <p>Working paper / preprint. Replace with a link to the document if available.</p>
+        </article>
+        <h3 style="margin-top:38px">Presentations</h3>
+        <article class="pub">
+          <span class="tag">Conference talk · Example</span>
+          <strong>[Title of presentation]</strong>
+          <p>[Conference or event], [city or online], [month year].</p>
+        </article>
+        <article class="pub">
+          <span class="tag">Poster · Example</span>
+          <strong>[Title of poster]</strong>
+          <p>[Symposium or workshop], [month year].</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. MISCELLANEOUS: Add hobbies, reading, outreach, photos, or useful links. -->
+    <section id="misc" aria-labelledby="misc-title">
+      <div class="container">
+        <h2 id="misc-title">Miscellaneous</h2>
+        <p class="section-intro">A few things beyond my professional and academic work.</p>
+        <div class="stack">
+          <div class="card"><h3>Interests &amp; Hobbies</h3><p>I enjoy [hobby 1], [hobby 2], and [hobby 3]. I may share photos or small personal projects here.</p></div>
+          <div class="card"><h3>Resources &amp; Notes</h3><p>Useful books, articles, tools, and notes that I want to remember or recommend.</p></div>
+          <div class="card"><h3>Community &amp; Outreach</h3><p>Volunteer activities, mentoring, events, or communities I participate in.</p></div>
+          <div class="card"><h3>Fun Facts</h3><p>[A short personal fact], [a favorite place], or [something unique about you].</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>© <span id="year">2026</span> Your Name · Hosted on GitHub Pages</footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
